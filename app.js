@@ -3,7 +3,6 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-require("./config/database");
 const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -16,6 +15,8 @@ const app = express();
 
 app.use(compression());
 app.use(helmet());
+const connection = require("./config/database");
+app.use(connection);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
